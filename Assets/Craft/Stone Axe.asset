@@ -17,7 +17,7 @@ MonoBehaviour:
   craftAmount: 1
   craftTime: 10
   craftResourses:
-  - craftObject: {fileID: 11400000, guid: 36fa1e4c5980c434d85bbfc85e60f84d, type: 2}
-    craftObjectAmount: 1
   - craftObject: {fileID: 11400000, guid: 84bc1dd5023ca4647828d5dac1f004e9, type: 2}
-    craftObjectAmount: 1
+    craftObjectAmount: 2
+  - craftObject: {fileID: 11400000, guid: 36fa1e4c5980c434d85bbfc85e60f84d, type: 2}
+    craftObjectAmount: 3

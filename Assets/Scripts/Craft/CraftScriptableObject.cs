@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CraftScriptableObject : ScriptableObject
 {
-    public enum CraftType {Common,Tools,Medical}
+    public enum CraftType {Common,Tools,Medical, Weapons}
     public CraftType craftType;
     public ItemScriptableObject finalObject;
     public int craftAmount;

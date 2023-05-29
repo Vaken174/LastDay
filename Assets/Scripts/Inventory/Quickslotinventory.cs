@@ -1,6 +1,3 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +11,7 @@ public class Quickslotinventory : MonoBehaviour
     public Sprite notSelectedSprite;
     public Text healthText;
     public Transform itemContainer;
-    public Slot activeSlot = null;
+    public  Slot activeSlot = null;
     public Transform allWeapons;
     public Indicators indicators;
 

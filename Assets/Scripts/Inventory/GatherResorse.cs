@@ -17,6 +17,14 @@ public class GatherResorse : MonoBehaviour
     private ItemScriptableObject resource;
     [SerializeField]
     private GameObject hitFX;
+    
+
+    private Quickslotinventory quickslotinventory;
+
+    private void Start()
+    {
+        quickslotinventory = FindObjectOfType<Quickslotinventory>();
+    }
 
     public void GatherResoirse() 
     {
@@ -32,15 +40,18 @@ public class GatherResorse : MonoBehaviour
                 inventoryManager.AddItem(resource, resourseAmount);
                 hit.collider.GetComponent<ResourseHealth>().health--;
 
-                if (hit.collider.GetComponent<ResourseHealth>().health <= 0 && hit.collider.gameObject.layer==6)
+
+                    if (hit.collider.GetComponent<ResourseHealth>().health <= 0 && hit.collider.gameObject.layer==6)
                 {
                     hit.collider.GetComponent<ResourseHealth>().TreeFall();
                     hit.collider.GetComponent<Rigidbody>().AddForce(mainCamera.transform.forward * 10, ForceMode.Impulse);
-                }
+
+                    }
                 if (hit.collider.GetComponent<ResourseHealth>().health <= 0 && hit.collider.gameObject.layer == 7)
                 {
                     hit.collider.GetComponent<ResourseHealth>().StoneGather();
-                }
+                    }
+
             }
         }
     }

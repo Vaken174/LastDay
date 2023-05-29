@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Banana
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Banana
+  itemName: "\u0411\u0430\u043D\u0430\u043D"
   itemPrefab: {fileID: 208820603431725516, guid: c703be48fdd7db344b53a6b1d407869f, type: 3}
   icon: {fileID: 21300000, guid: 029b3c42c45298949a1d70cfa067c97d, type: 3}
   MaximumAmount: 2
-  itemDescription: 
+  itemDescription: "\u0440\u0435\u0434\u043A\u0438\u0439 \u043F\u043B\u043E\u0434"
+  inHandName: 
   isConsumeable: 1
   changeHealth: 0
   changeHunger: 10

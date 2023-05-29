@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: Wood
+  itemName: "\u0414\u0435\u0440\u0435\u0432\u043E"
   itemPrefab: {fileID: 6045510701220298012, guid: 81a3d379b0fda854188781f30d209f6b, type: 3}
   icon: {fileID: 21300000, guid: 31c84ab62bed7bc43aa3b3297c5d99a7, type: 3}
   MaximumAmount: 20

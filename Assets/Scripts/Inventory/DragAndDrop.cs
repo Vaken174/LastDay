@@ -13,10 +13,11 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public Slot oldSlot;
     private Transform player;
     private Quickslotinventory Quickslotinventory;
-
+    private CraftManager craftManager;
 
     private void Start()
     {
+        craftManager = FindObjectOfType<CraftManager>();
         Quickslotinventory = FindObjectOfType<Quickslotinventory>();
         //ÏÎÑÒÀÂÜÒÅ ÒİÃ "PLAYER" ÍÀ ÎÁÚÅÊÒÅ ÏÅĞÑÎÍÀÆÀ!
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -80,7 +81,7 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 itemObject.GetComponent<Item>().amount = oldSlot.amount;
                 // óáèğàåì çíà÷åíèÿ InventorySlot
                 NullifySlotData();
-                
+                craftManager.currentCraftItem.FillItemDetails();
             }
             Quickslotinventory.CheckItemInHand();
         }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stone Pickaxe
   m_EditorClassIdentifier: 
   itemType: 3
-  itemName: Stone Pickaxe
+  itemName: "\u041A\u0430\u043C\u0435\u043D\u043D\u0430\u044F \u043A\u0438\u0440\u043A\u0430"
   itemPrefab: {fileID: 4927394928961940891, guid: fffd1eeb0f0bfed49acefe34ad40ac45, type: 3}
   icon: {fileID: 21300000, guid: f9de0c522713e894581bbf1821d00ef3, type: 3}
   MaximumAmount: 1
@@ -23,6 +23,7 @@ MonoBehaviour:
     \u0432 \u0432\u043E\u0437\u0434\u0443\u0445\u0435."
   inHandName: StonePickaxe
   isConsumeable: 0
+  maxHealth: 2
   changeHealth: 0
   changeHunger: 0
   changeThirst: 0

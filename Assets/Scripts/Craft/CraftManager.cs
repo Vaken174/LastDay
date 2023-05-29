@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class CraftManager : MonoBehaviour
 {
     public bool isOpen;
     [SerializeField]
     private GameObject craftingPanel;
+    public GameObject inventoryPanel;
     [SerializeField]
     private GameObject UIBG;
     [SerializeField]
@@ -33,19 +35,25 @@ public class CraftManager : MonoBehaviour
     public Image craftItemIcon;
     public TMP_Text craftItemDuration;
     public TMP_Text craftItemAmount;
+
     public void Start()
     {
-        craftingPanel.SetActive(false);
-
         inventoryManager = FindObjectOfType<InventoryManager>();
-        //GameObject craftItemButton = Instantiate(craftItemButtonPrefabs, CraftItemsPanel);
-        //craftItemButton.GetComponent<Image>().sprite = allCrafts[0].finalObject.icon;
-        //craftItemButton.GetComponent<FillCraftItemDitails>().currentCraftItem = allCrafts[0];
-        //craftItemButton.GetComponent<FillCraftItemDitails>().FillItemDetails();
-        //Destroy(craftItemButton);
+
+        GameObject craftItemButton = Instantiate(craftItemButtonPrefabs, CraftItemsPanel);
+        craftItemButton.GetComponent<Image>().sprite = allCrafts[0].finalObject.icon;
+        craftItemButton.GetComponent<FillCraftItemDitails>().currentCraftItem = allCrafts[0];
+        craftItemButton.GetComponent<FillCraftItemDitails>().FillItemDetails();
+        Destroy(craftItemButton);
+        craftingPanel.gameObject.SetActive(false);
     }
 
-    void Update()
+    public void FillItemDetailsHelper()
+    {
+        currentCraftItem.FillItemDetails();
+    }
+
+    public void Update()
     {
         if (Input.GetKeyDown(openCloseCraft))
         {
@@ -61,6 +69,7 @@ public class CraftManager : MonoBehaviour
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                     Camera_Movement.sensitivityMouse = 0f;
+
                 }
                 else
                 {
@@ -70,10 +79,10 @@ public class CraftManager : MonoBehaviour
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
                     Camera_Movement.sensitivityMouse = 250;
+
                 }
             }
         }
-
     }
 
     public void LoadCraftItem(string craftType)

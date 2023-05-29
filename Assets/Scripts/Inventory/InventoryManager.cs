@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro.Examples;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class InventoryManager : MonoBehaviour
     private GameObject crosshair;
     [SerializeField]
     private Transform InventoryPanel;
+    public GameObject craftPanel;
     [SerializeField]
     private Transform quickSlotPanel;
     [SerializeField]
@@ -18,7 +20,7 @@ public class InventoryManager : MonoBehaviour
     
     private CraftManager craftManager;
     
-    public bool isOpen = true;
+    public bool isOpen;
     public float sensitivity;
 
     public List<Slot> slots = new List<Slot>();
@@ -56,6 +58,7 @@ public class InventoryManager : MonoBehaviour
 
      public void Update()
     {
+        
         OpenInventory();
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -67,6 +70,7 @@ public class InventoryManager : MonoBehaviour
                 if (hit.collider.gameObject.GetComponent<Item>() != null)
                 {
                     AddItem(hit.collider.gameObject.GetComponent<Item>().item, hit.collider.gameObject.GetComponent<Item>().amount);
+                    craftManager.currentCraftItem.FillItemDetails();
                     Destroy(hit.collider.gameObject);
                 }
             }
@@ -74,6 +78,7 @@ public class InventoryManager : MonoBehaviour
     }
     public void AddItem(ItemScriptableObject _item, int _amount)
     {
+        
         foreach (Slot slot in slots)
         {
             if (slot.item == _item)
@@ -103,6 +108,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+    
 
 
     private void OpenInventory()

@@ -12,7 +12,7 @@ public class FillCraftItemDitails : MonoBehaviour
     public string craftInfoPanelName;
     private CraftQueueManager craftQueueManager;
     private GameObject craftInfoPanelGO;
-    private void Start()
+    private void Awake()
     {
         craftInfoPanelGO = GameObject.Find(craftInfoPanelName);
         craftManager = FindObjectOfType<CraftManager>();
@@ -21,7 +21,8 @@ public class FillCraftItemDitails : MonoBehaviour
     }
     public void FillItemDetails()
     {
-        //craftManager.currentCraftItem == this;
+        craftManager.currentCraftItem = this;
+
         for (int i = 0; i < craftInfoPanelGO.transform.childCount; i++)
         {
             Destroy(craftInfoPanelGO.transform.GetChild(i).gameObject);
@@ -35,11 +36,12 @@ public class FillCraftItemDitails : MonoBehaviour
         bool canCraft = true;
         for (int i = 0; i < currentCraftItem.craftResourses.Count; i++)
         {
-            GameObject craftResourceGO = Instantiate(crafResourcePrefab, GameObject.Find(craftInfoPanelName).transform);
+            GameObject craftResourceGO = Instantiate(crafResourcePrefab, craftInfoPanelGO.transform);
             CraftResourseDetails crd = craftResourceGO.GetComponent<CraftResourseDetails>();
             crd.amountText.text = currentCraftItem.craftResourses[i].craftObjectAmount.ToString();
             crd.itemTypeText.text = currentCraftItem.craftResourses[i].craftObject.itemName;
-            crd.totalText.text = currentCraftItem.craftResourses[i].craftObjectAmount.ToString();
+            int totalAmount = currentCraftItem.craftResourses[i].craftObjectAmount * int.Parse(craftQueueManager.craftAmountInputField.text);
+            crd.totalText.text = totalAmount.ToString();
             int resourceAmount = 0;
             foreach (Slot slot in FindObjectsOfType<InventoryManager>()[0].slots)
             {
@@ -53,7 +55,7 @@ public class FillCraftItemDitails : MonoBehaviour
             crd.haveText.text = resourceAmount.ToString();
 
 
-            if (resourceAmount < currentCraftItem.craftResourses[i].craftObjectAmount)
+            if (resourceAmount < totalAmount)
             {
                 canCraft = false;
             }

@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType { Material, Food, Weapom, Instrument, Medical}
+public enum ItemType { Material, Food, Weapons, Instrument, Medical}
 public class ItemScriptableObject : ScriptableObject
 {
     public ItemType itemType;
@@ -13,6 +11,7 @@ public class ItemScriptableObject : ScriptableObject
     public string itemDescription;
     public string inHandName;
     public bool isConsumeable;
+    public int maxHealth;
 
     [Header("Consumable Characteristics")]
     public float changeHealth;

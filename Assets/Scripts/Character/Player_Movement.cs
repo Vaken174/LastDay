@@ -43,9 +43,12 @@ public class Player_Movement : MonoBehaviour
     [SerializeField]
     private Indicators Indicators;
     private CraftManager craftManager;
+    
+    //private Quickslotinventory quickslotinventory;
 
     private void Start()
     {
+        //quickslotinventory = FindObjectOfType<Quickslotinventory>();
         craftManager = FindObjectOfType<CraftManager>();
     }
     public void Update()
@@ -89,12 +92,12 @@ public class Player_Movement : MonoBehaviour
             {
                 if (Quickslotinventory.activeSlot.item != null)
                 {
-                    if (Quickslotinventory.activeSlot.item.itemType == ItemType.Instrument)
+                    if (Quickslotinventory.activeSlot.item.itemType == ItemType.Instrument || Quickslotinventory.activeSlot.item.itemType == ItemType.Weapons)
                     {
                         if (inventoryManager.isOpen == false)
                         {
                             if (!craftManager.isOpen)
-                                anim.SetBool("Hit", true);                           
+                                anim.SetBool("Hit", true);
                         }
                     }
                 }
@@ -164,12 +167,14 @@ public class Player_Movement : MonoBehaviour
 
     public void Hit() 
     {
-    foreach (Transform item in Quickslotinventory.allWeapons) 
+        foreach (Transform item in Quickslotinventory.allWeapons)
         {
-        if(item.gameObject.activeSelf)
+            if (item.gameObject.activeSelf)
             {
                 item.GetComponent<GatherResorse>().GatherResoirse();
+                craftManager.currentCraftItem.FillItemDetails();
             }
+
         }
     }
 
