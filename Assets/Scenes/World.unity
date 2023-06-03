@@ -834,7 +834,7 @@ MonoBehaviour:
   JumpPower: 0.5
   gravityScale: -10
   anim: {fileID: 1127636076}
-  controller: {fileID: 1127636079}
+  playerController: {fileID: 1127636079}
   layerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -1189,6 +1189,7 @@ MonoBehaviour:
   resourseAmount: 1
   resource: {fileID: 0}
   hitFX: {fileID: 0}
+  reachDistants: 4
 --- !u!4 &1540150185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5443344118793791336, guid: 94d003840c8560c429597eebd5f7fa09, type: 3}
@@ -2025,13 +2026,17 @@ PrefabInstance:
       propertyPath: m_StartCorner
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2897311976044086014, guid: d9e2f3720e51adf4e97dbaef4170ccc7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2897311976053401794, guid: d9e2f3720e51adf4e97dbaef4170ccc7, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2897311976053401794, guid: d9e2f3720e51adf4e97dbaef4170ccc7, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2897311976053401804, guid: d9e2f3720e51adf4e97dbaef4170ccc7, type: 3}
       propertyPath: m_Color.b
@@ -2385,6 +2390,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2897311976688557865, guid: d9e2f3720e51adf4e97dbaef4170ccc7, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2897311976688557866, guid: d9e2f3720e51adf4e97dbaef4170ccc7, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0
@@ -2392,6 +2401,10 @@ PrefabInstance:
     - target: {fileID: 2897311976688557866, guid: d9e2f3720e51adf4e97dbaef4170ccc7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897311976737374136, guid: d9e2f3720e51adf4e97dbaef4170ccc7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2897311976739565627, guid: d9e2f3720e51adf4e97dbaef4170ccc7, type: 3}
       propertyPath: m_ContentType
@@ -2544,6 +2557,10 @@ PrefabInstance:
     - target: {fileID: 2897311976739565627, guid: d9e2f3720e51adf4e97dbaef4170ccc7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897311977039167040, guid: d9e2f3720e51adf4e97dbaef4170ccc7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2897311977063218285, guid: d9e2f3720e51adf4e97dbaef4170ccc7, type: 3}
       propertyPath: m_LocalScale.z
@@ -3362,6 +3379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 7625106789376310991, guid: a65d658b7e8125946b011ecb6fda4b26, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a65d658b7e8125946b011ecb6fda4b26, type: 3}
 --- !u!1001 &5134617275366467438
@@ -3428,6 +3449,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 357641278, guid: 44b6388c2acafe94392f87323868467d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 357641283, guid: 44b6388c2acafe94392f87323868467d, type: 3}
       propertyPath: _indicators
       value: 
@@ -3436,6 +3461,10 @@ PrefabInstance:
       propertyPath: _inventoryManager
       value: 
       objectReference: {fileID: 1852747756}
+    - target: {fileID: 1062320420, guid: 44b6388c2acafe94392f87323868467d, type: 3}
+      propertyPath: reachDistants
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1062320420, guid: 44b6388c2acafe94392f87323868467d, type: 3}
       propertyPath: inventoryManager
       value: 
@@ -3512,22 +3541,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6216841534430059927, guid: 44b6388c2acafe94392f87323868467d, type: 3}
-      propertyPath: Indicators
-      value: 
-      objectReference: {fileID: 1766845286}
-    - target: {fileID: 6216841534430059927, guid: 44b6388c2acafe94392f87323868467d, type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 6216841534550347573}
-    - target: {fileID: 6216841534430059927, guid: 44b6388c2acafe94392f87323868467d, type: 3}
-      propertyPath: inventoryManager
-      value: 
-      objectReference: {fileID: 1852747756}
-    - target: {fileID: 6216841534430059927, guid: 44b6388c2acafe94392f87323868467d, type: 3}
-      propertyPath: Quickslotinventory
-      value: 
-      objectReference: {fileID: 595128474}
     - target: {fileID: 6216841534550347572, guid: 44b6388c2acafe94392f87323868467d, type: 3}
       propertyPath: m_OcclusionCulling
       value: 1
@@ -3561,12 +3574,15 @@ PrefabInstance:
       value: -0.53865
       objectReference: {fileID: 0}
     - target: {fileID: 8974372956391260599, guid: 44b6388c2acafe94392f87323868467d, type: 3}
+      propertyPath: reachDistants
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974372956391260599, guid: 44b6388c2acafe94392f87323868467d, type: 3}
       propertyPath: inventoryManager
       value: 
       objectReference: {fileID: 1852747756}
     m_RemovedComponents:
     - {fileID: 8435371014626791027, guid: 44b6388c2acafe94392f87323868467d, type: 3}
-    - {fileID: 6216841534430059927, guid: 44b6388c2acafe94392f87323868467d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 44b6388c2acafe94392f87323868467d, type: 3}
 --- !u!1001 &5443344117824664769
 PrefabInstance:

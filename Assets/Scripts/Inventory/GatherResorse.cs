@@ -17,7 +17,9 @@ public class GatherResorse : MonoBehaviour
     private ItemScriptableObject resource;
     [SerializeField]
     private GameObject hitFX;
-    
+    [SerializeField]
+    private float reachDistants = 2f;
+
 
     private Quickslotinventory quickslotinventory;
 
@@ -31,7 +33,7 @@ public class GatherResorse : MonoBehaviour
         RaycastHit hit;
         Ray ray = mainCamera.ScreenPointToRay(new Vector2(Screen.width/2, Screen.height/2));
 
-        if (Physics.Raycast(ray,out hit, 1.5f, layerMask))
+        if (Physics.Raycast(ray,out hit, reachDistants, layerMask))
         {
             if (resource.name == hit.collider.GetComponent<ResourseHealth>().resourseType.name)
             if (hit.collider.GetComponent<ResourseHealth>().health >= 1)

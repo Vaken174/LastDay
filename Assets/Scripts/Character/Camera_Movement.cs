@@ -27,6 +27,5 @@ public class Camera_Movement : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         Body.Rotate(Vector3.up * mouseX);
-
     }
 }

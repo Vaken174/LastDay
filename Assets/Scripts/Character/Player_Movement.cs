@@ -21,7 +21,7 @@ public class Player_Movement : MonoBehaviour
     [SerializeField]
     public Animator anim;
     [SerializeField]
-    private CharacterController controller;
+    private CharacterController playerController;
     [SerializeField]
     private LayerMask layerMask;
     [SerializeField]
@@ -44,11 +44,8 @@ public class Player_Movement : MonoBehaviour
     private Indicators Indicators;
     private CraftManager craftManager;
     
-    //private Quickslotinventory quickslotinventory;
-
     private void Start()
     {
-        //quickslotinventory = FindObjectOfType<Quickslotinventory>();
         craftManager = FindObjectOfType<CraftManager>();
     }
     public void Update()
@@ -56,36 +53,26 @@ public class Player_Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-            {
                 Walk();
-            }
             else
-            {
                 Run();
-            }
         }
         else
-        {
             Walk();
-        }
+
 
         if (Input.GetKey(KeyCode.Space) && isGround)
-        {
             anim.SetBool("IsJumping",true);
-        }
         else
-        {
             anim.SetBool("IsJumping", false);
-        }
+
 
         if (Input.GetKey(KeyCode.LeftControl))
-        {
             SneakWalk();
-        }
         else
-        {
-            controller.height = PlayerHeight;
-        }
+            playerController.height = PlayerHeight;
+
+
         if (Input.GetKey(KeyCode.Mouse0))
         {
             if (Quickslotinventory.activeSlot != null)
@@ -94,19 +81,15 @@ public class Player_Movement : MonoBehaviour
                 {
                     if (Quickslotinventory.activeSlot.item.itemType == ItemType.Instrument || Quickslotinventory.activeSlot.item.itemType == ItemType.Weapons)
                     {
-                        if (inventoryManager.isOpen == false)
-                        {
-                            if (!craftManager.isOpen)
-                                anim.SetBool("Hit", true);
-                        }
+                        if (!inventoryManager.isOpen && !craftManager.isOpen)
+                             anim.SetBool("Hit", true);
                     }
                 }
             }
         }
         else
-        {
             anim.SetBool("Hit",false);
-        }
+
         Ray disiredTargetRay = mainCamera.GetComponent<Camera>().ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
         Vector3 desiredTargetPosition = disiredTargetRay.origin + disiredTargetRay.direction * 0.7f;
         aimTarget.position = desiredTargetPosition;
@@ -120,22 +103,20 @@ public class Player_Movement : MonoBehaviour
     {
         moveVector.x = Input.GetAxis("Horizontal");
         moveVector.y = Input.GetAxis("Vertical");
-
+            
         isGround = Physics.CheckSphere(groundCheck.position, reachDistante, layerMask);
 
         Vector3 move = transform.right * moveVector.x + transform.forward * moveVector.y;
-        controller.Move(move * currentSpeed * Time.deltaTime);
+        playerController.Move(move * currentSpeed * Time.deltaTime);
 
         Gravity();
     }
     private void Gravity()
     {
         velocity.y += gravityScale * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        playerController.Move(velocity * Time.deltaTime);
         if (velocity.y < gravityScale)
-        {
             velocity.y = gravityScale;
-        }
     }
     private void Run()
     {
@@ -152,7 +133,6 @@ public class Player_Movement : MonoBehaviour
     }
     private void Walk()
     {
-
         animationInterpolation = Mathf.Lerp(animationInterpolation, 1f, Time.deltaTime * 3);
         currentSpeed = Mathf.Lerp(currentSpeed, WalkSpeed, Time.deltaTime * 3);
 
@@ -162,7 +142,7 @@ public class Player_Movement : MonoBehaviour
     }
     private void SneakWalk()
     {
-        controller.height = PlayerHeight/2;
+        playerController.height = PlayerHeight/2;
     }
 
     public void Hit() 
@@ -181,15 +161,11 @@ public class Player_Movement : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer ==4)
-        {
             Indicators.isInWater = true;
-        }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer ==4)
-        {
             Indicators.isInWater = false;
-        }
     }
 }

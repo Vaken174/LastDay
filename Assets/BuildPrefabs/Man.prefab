@@ -681,11 +681,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -3432401550182100168, guid: ad355ac3d64b09c4ea34e4a9ae2b4cff, type: 3}
   m_PrefabInstance: {fileID: 5189838133152265640}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1832006140982036537 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: ad355ac3d64b09c4ea34e4a9ae2b4cff, type: 3}
-  m_PrefabInstance: {fileID: 5189838133152265640}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1864536165070749888 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3321919801592875672, guid: ad355ac3d64b09c4ea34e4a9ae2b4cff, type: 3}
@@ -804,33 +799,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &6216841534430059927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4956048219354958073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c1ca7b698acc64db3122f9257d1547, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WalkSpeed: 5
-  RunSpeed: 10
-  JumpPower: 0.5
-  gravityScale: -10
-  anim: {fileID: 1832006140982036537}
-  controller: {fileID: 6216841534430059926}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  groundCheck: {fileID: 6216841534385449798}
-  aimTarget: {fileID: 1550811424}
-  mainCamera: {fileID: 6216841534550347571}
-  inventoryManager: {fileID: 0}
-  Quickslotinventory: {fileID: 0}
-  Indicators: {fileID: 0}
 --- !u!114 &357641278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,7 +905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _indicators: {fileID: 0}
-  _player_Movement: {fileID: 6216841534430059927}
+  _player_Movement: {fileID: 0}
   _inventoryManager: {fileID: 0}
 --- !u!4 &5068543646293010462 stripped
 Transform:

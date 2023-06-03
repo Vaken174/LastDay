@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using TMPro.Examples;
 using Unity.VisualScripting;
 using UnityEngine;
-
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField]
@@ -29,7 +28,7 @@ public class InventoryManager : MonoBehaviour
     public float reachDistante = 3f;
 
 
-    void Start()
+    private void Start()
     {
         craftManager = FindObjectOfType<CraftManager>();
 
@@ -52,13 +51,11 @@ public class InventoryManager : MonoBehaviour
         UIBG.SetActive(false);
 
         mainCamera = Camera.main;
-
         sensitivity = Camera_Movement.sensitivityMouse;
     }
 
      public void Update()
-    {
-        
+     {
         OpenInventory();
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -72,10 +69,10 @@ public class InventoryManager : MonoBehaviour
                     AddItem(hit.collider.gameObject.GetComponent<Item>().item, hit.collider.gameObject.GetComponent<Item>().amount);
                     craftManager.currentCraftItem.FillItemDetails();
                     Destroy(hit.collider.gameObject);
-                }
+                }   
             }
         }
-    }
+     }
     public void AddItem(ItemScriptableObject _item, int _amount)
     {
         

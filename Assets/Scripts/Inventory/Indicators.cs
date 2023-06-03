@@ -39,7 +39,7 @@ public class Indicators : MonoBehaviour
         if (isInWater) 
         {
             if (Input.GetKey(KeyCode.E))
-                ChangeWaterAmount(50);
+                ChangeWaterAmount(10);
         }
         if (foodAmount > 0)
         {
